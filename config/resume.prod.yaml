@@ -1,0 +1,287 @@
+# Production résumé content. Deep-merged into config.json by
+# `node scripts/build-config.mjs --env=prod`, then validated by ResumeConfig at boot.
+# Every list is ordered: the array index becomes sort_order in the database.
+ResumeConfig:
+  profile:
+    slug: onezee
+    name: Nikita Shevelev
+    headline: Senior Backend Engineer · NestJS / Node.js / TypeScript
+    description: >-
+      I build and own high-load backend systems. For five years at iMe - a
+      crypto/fintech Telegram super-app - I designed the systems that keep it
+      running at scale and move real money across many blockchains. I joined as
+      an intern and grew into a senior engineer owning core platform systems: a
+      ~700 req/sec API gateway, a self-custodial multi-chain wallet, a
+      subscription platform spanning 8+ payment providers and a streaming AI
+      assistant. In the evenings I ship my own apps to the App Store and Google
+      Play.
+    location: Krasnodar, Russia — open to EU relocation
+    timezone: Europe/Moscow
+    available: true
+
+  links:
+    - kind: WEBSITE
+      label: onezee.dev
+      url: https://onezee.dev
+    - kind: GITHUB
+      label: GitHub
+      url: https://github.com/OneZee23
+    - kind: LINKEDIN
+      label: LinkedIn
+      url: https://www.linkedin.com/in/nikita-shevelev-onezee
+    - kind: BLOG
+      label: Habr
+      url: https://habr.com/ru/users/OneZee
+    - kind: TELEGRAM
+      label: Telegram
+      url: https://t.me/onezee_co
+
+  skills:
+    - name: NestJS
+      category: Core backend
+      level: EXPERT
+    - name: TypeScript
+      category: Core backend
+      level: EXPERT
+    - name: Node.js
+      category: Core backend
+      level: EXPERT
+    - name: PostgreSQL
+      category: Core backend
+      level: EXPERT
+    - name: TypeORM
+      category: Core backend
+      level: EXPERT
+    - name: REST API design
+      category: Core backend
+      level: EXPERT
+    - name: Microservice architecture
+      category: Core backend
+      level: EXPERT
+    - name: RabbitMQ
+      category: Distributed / infra
+      level: STRONG
+    - name: Transactional Outbox
+      category: Distributed / infra
+      level: STRONG
+    - name: Redis
+      category: Distributed / infra
+      level: STRONG
+    - name: Kubernetes
+      category: Distributed / infra
+      level: STRONG
+    - name: Helm
+      category: Distributed / infra
+      level: STRONG
+    - name: werf
+      category: Distributed / infra
+      level: STRONG
+    - name: GitLab CI/CD
+      category: Distributed / infra
+      level: STRONG
+    - name: GitHub Actions
+      category: Distributed / infra
+      level: STRONG
+    - name: Docker
+      category: Distributed / infra
+      level: STRONG
+    - name: Circuit breaker (opossum)
+      category: Distributed / infra
+      level: STRONG
+    - name: Rate limiting
+      category: Distributed / infra
+      level: STRONG
+    - name: Grafana / Prometheus / Loki
+      category: Distributed / infra
+      level: STRONG
+    - name: EVM (ethers / viem)
+      category: Blockchain backend
+      level: STRONG
+    - name: Bitcoin
+      category: Blockchain backend
+      level: STRONG
+    - name: Solana
+      category: Blockchain backend
+      level: STRONG
+    - name: TON
+      category: Blockchain backend
+      level: STRONG
+    - name: Tron
+      category: Blockchain backend
+      level: STRONG
+    - name: HD wallets (BIP32 / BIP39 / BIP44)
+      category: Blockchain backend
+      level: STRONG
+    - name: DEX aggregation
+      category: Blockchain backend
+      level: STRONG
+    - name: Apple App Store IAP
+      category: Payments
+      level: STRONG
+    - name: Google Play Billing
+      category: Payments
+      level: STRONG
+    - name: Stripe
+      category: Payments
+      level: STRONG
+    - name: Telegram Stars
+      category: Payments
+      level: STRONG
+    - name: YooKassa
+      category: Payments
+      level: STRONG
+    - name: Binance Pay
+      category: Payments
+      level: STRONG
+    - name: OpenAI Assistants API
+      category: AI / ML integration
+      level: FAMILIAR
+    - name: Token streaming
+      category: AI / ML integration
+      level: FAMILIAR
+    - name: Google Cloud Vision
+      category: AI / ML integration
+      level: FAMILIAR
+    - name: React
+      category: Frontend / mobile
+      level: FAMILIAR
+    - name: React Native / Expo
+      category: Frontend / mobile
+      level: FAMILIAR
+    - name: Swift / SwiftUI
+      category: Frontend / mobile
+      level: FAMILIAR
+    - name: Telegram Mini Apps
+      category: Frontend / mobile
+      level: FAMILIAR
+    - name: Solidity
+      category: Smart contracts
+      level: FAMILIAR
+    - name: Hardhat
+      category: Smart contracts
+      level: FAMILIAR
+    - name: i18next
+      category: i18n
+      level: STRONG
+
+  experience:
+    - company: iMe
+      position: Senior Backend Engineer
+      companyUrl: https://imem.app
+      location: Remote · UAE entity
+      startedAt: '2021-01'
+      finishedAt: '2026-06'
+      summary: >-
+        iMe - a crypto/fintech Telegram super-app on iOS, Android and Desktop,
+        with a built-in self-custodial crypto wallet, subscription monetisation
+        and an AI assistant. Dozens of NestJS microservices on Kubernetes. I
+        joined as an intern in 2020, was promoted from Junior to Senior by 2023,
+        and then owned core platform systems.
+      achievements:
+        - >-
+          Designed and owned the API gateway — the single entry point for the
+          iOS, Android and Desktop clients — sustaining ~700 req/sec with HA
+          autoscaling, multi-tier rate limiting across 8 per-endpoint tiers and
+          Redis-backed counters on a 3-shard cluster.
+        - >-
+          Built the subscription and payments platform integrating 8+ providers
+          — Apple App Store server-to-server receipt validation, Google Play
+          Billing, Stripe with gifting, Telegram Stars, YooKassa and Binance Pay
+          — with the full lifecycle behind it: renewals, retry windows, refunds,
+          revocations, grace periods and locale-aware notifications.
+        - >-
+          Architected a self-custodial multi-chain wallet across 9+ networks
+          (Bitcoin, Ethereum, BSC, Polygon, Base, Arbitrum, Solana, Tron, TON)
+          with BIP39/BIP44 HD derivation from a single seed, an AES-256-GCM
+          vault, per-protocol transfer adapters and gas-oracle fee estimation.
+        - >-
+          Integrated 7+ DEX and swap routes — Uniswap V3/V4, PancakeSwap,
+          1inch Fusion, Symbiosis for cross-chain, Jupiter and STON.fi — plus
+          the MoonPay, Paybis and Mercuryo fiat on-ramps.
+        - >-
+          Shipped an AI Telegram assistant on OpenAI GPT-4 and the Assistants
+          API, streaming token deltas to the client over a realtime WebSocket
+          with backoff-based rate limiting.
+        - >-
+          Applied distributed-systems patterns across the fleet: a transactional
+          outbox for guaranteed event delivery, circuit breakers on external
+          JSON-RPC endpoints, durable RabbitMQ subscriptions, and structured
+          YAML config compiled into typed config objects instead of environment
+          sprawl.
+        - >-
+          Drove the migration of legacy services from NestJS 7 and TypeORM 0.2
+          to NestJS 11 and TypeORM 0.3 without downtime.
+
+  projects:
+    - name: TripTrack
+      slug: trip-track
+      description: >-
+        A road-trip tracker live on the App Store, and my strongest solo build —
+        a fully native Swift app for iPhone, iPad and watchOS with Live
+        Activities and Kalman-filtered GPS, backed by a NestJS and PostgreSQL
+        API with S3 photo storage, APNs push and social features.
+      url: https://apps.apple.com/us/app/triptrack-road-journal/id6760650361
+      repositoryUrl: https://github.com/OneZee23/trip-track-ios
+      status: LIVE
+      stack:
+        - Swift
+        - SwiftUI
+        - watchOS
+        - NestJS
+        - PostgreSQL
+        - TypeORM
+        - AWS S3
+        - APNs
+        - Docker
+        - GitLab CI
+    - name: TeachTrack
+      slug: teach-track
+      description: >-
+        A SaaS for private tutors covering scheduling, students, lesson-package
+        invoicing and a Telegram reminder bot, with a public metrics dashboard
+        at stats.teachtrack.ru.
+      url: https://teachtrack.ru
+      status: LIVE
+      stack:
+        - NestJS
+        - PostgreSQL
+        - TypeORM
+        - React
+        - Vite
+        - TailwindCSS
+        - Prometheus
+        - Grafana
+        - Loki
+    - name: LifeTrack
+      slug: life-track
+      description: >-
+        A minimalist offline-first habit tracker on both stores — native SwiftUI
+        with Core Data and Apple Health on iOS, React Native and Expo on
+        Android, shipped to Google Play through EAS.
+      url: https://play.google.com/store/apps/details?id=co.onezee.lifetrack
+      status: LIVE
+      stack:
+        - SwiftUI
+        - Core Data
+        - Apple Health
+        - React Native
+        - Expo
+        - SQLite
+    - name: onezee.dev
+      slug: onezee-dev
+      description: >-
+        My personal site and blog — Astro and React, containerised and shipped
+        to Kubernetes on DigitalOcean with Helm, werf and GitHub Actions, with
+        posts fed straight from a Telegram channel.
+      url: https://onezee.dev
+      repositoryUrl: https://github.com/OneZee23/onezee-landing
+      status: LIVE
+      stack:
+        - Astro
+        - React
+        - TypeScript
+        - Docker
+        - Kubernetes
+        - Helm
+        - werf
+        - GitHub Actions

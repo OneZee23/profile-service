@@ -1,0 +1,64 @@
+# Résumé content, rendered into the same config.json as config.example.yaml.
+# Two entries per list — enough to show the shape. The real CV lands here later.
+# Array order is the sortOrder; startedAt/finishedAt are YYYY-MM or YYYY-MM-DD.
+
+ResumeConfig:
+  profile:
+    slug: onezee
+    name: Nikita Shevelev
+    headline: Backend engineer
+    description: Sample profile. Replace with the real description.
+    location: Krasnodar, Russia
+    timezone: Europe/Moscow
+    available: true
+
+  links:
+    - kind: GITHUB
+      label: GitHub
+      url: https://github.com/OneZee23
+    - kind: EMAIL
+      label: Email
+      url: mailto:sample@example.com
+
+  skills:
+    - name: NestJS
+      category: Backend
+      level: EXPERT
+    - name: PostgreSQL
+      category: Databases
+      level: STRONG
+
+  experience:
+    - company: Sample Company
+      position: Senior Backend Engineer
+      companyUrl: https://example.com
+      location: Remote
+      startedAt: '2023-01'
+      summary: Sample role. Replace with the real one.
+      achievements:
+        - Sample achievement, replace me
+        - Second sample achievement
+    - company: Another Company
+      position: Backend Engineer
+      startedAt: '2020-06'
+      finishedAt: '2022-12'
+      achievements:
+        - Sample achievement from an earlier role
+
+  projects:
+    - name: profile-service
+      slug: profile-service
+      description: This service. A public GraphQL digital business card.
+      repositoryUrl: https://github.com/OneZee23/profile-service
+      status: LIVE
+      stack:
+        - NestJS
+        - Prisma
+        - GraphQL
+    - name: Sample Project
+      slug: sample-project
+      description: Replace me with a real project.
+      url: https://example.com
+      status: ARCHIVED
+      stack:
+        - TypeScript

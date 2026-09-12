@@ -1,0 +1,23 @@
+DatabaseConfig:
+  host: 127.0.0.1
+  # 5435, not 5432 — see docker-compose.yml
+  port: 5435
+  username: postgres
+  password: postgres
+  database: postgres
+  schema: public
+  poolSize: 3
+  logQueries: false
+
+WebserverConfig:
+  port: 3000
+  # must end with a slash
+  publicUrl: http://localhost:3000/
+
+GraphqlConfig:
+  path: /graphql
+  sandbox: true
+  introspection: true
+  maxDepth: 8
+  responseCacheTtlSeconds: 60
+  maxBodyBytes: 16384

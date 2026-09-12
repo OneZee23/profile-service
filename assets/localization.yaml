@@ -1,0 +1,17 @@
+languages:
+  default: en
+  similar:
+    be: ru
+    kk: ru
+    uk: ru
+
+templates:
+  # Anything the GraphQL filter did not recognise as an AppError
+  UNKNOWN_SERVER_ERROR:
+    en: 'Something went wrong'
+    ru: 'Что-то пошло не так'
+
+  # The requested slug has no row in the profile table
+  ERR_PROFILE_NOT_FOUND:
+    en: 'Profile "%slug" was not found'
+    ru: 'Профиль "%slug" не найден'

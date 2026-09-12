@@ -1,0 +1,19 @@
+services:
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      TZ: UTC
+    ports:
+    # 5435 on the host, not 5432 — a developer box usually already has a
+    # Postgres or three. The container port and the production compose file
+    # both stay on 5432.
+    - 5435:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      timeout: 1s
+      retries: 10

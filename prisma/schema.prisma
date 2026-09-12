@@ -1,0 +1,123 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// A person presented by the service. `id` is the slug, so ids are stable
+/// across environments and across re-seeds.
+model Profile {
+  id        String   @id
+  slug      String   @unique
+  name      String
+  headline  String
+  description String
+  location  String?
+  timezone  String?
+  available Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  links      ProfileLink[]
+  skills     Skill[]
+  experience Experience[]
+  projects   Project[]
+
+  @@map("profile")
+}
+
+/// An outbound link on the card. `kind` holds a ProfileLinkKind value.
+model ProfileLink {
+  id        String @id
+  profileId String @map("profile_id")
+  kind      String
+  label     String
+  url       String
+  sortOrder Int    @map("sort_order")
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+  @@map("profile_link")
+}
+
+/// One skill. `level` holds a SkillLevel value.
+model Skill {
+  id        String @id
+  profileId String @map("profile_id")
+  name      String
+  category  String
+  level     String
+  sortOrder Int    @map("sort_order")
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+  @@map("skill")
+}
+
+/// One job. `position` is the job title; `sortOrder` is the only ordering column.
+model Experience {
+  id         String    @id
+  profileId  String    @map("profile_id")
+  company    String
+  position   String
+  companyUrl String?   @map("company_url")
+  location   String?
+  startedAt  DateTime  @map("started_at") @db.Date
+  finishedAt DateTime? @map("finished_at") @db.Date
+  summary    String?
+  sortOrder  Int       @map("sort_order")
+
+  profile      Profile       @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  achievements Achievement[]
+
+  @@index([profileId])
+  @@map("experience")
+}
+
+/// One bullet under a job.
+model Achievement {
+  id           String @id
+  experienceId String @map("experience_id")
+  text         String
+  sortOrder    Int    @map("sort_order")
+
+  experience Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+
+  @@index([experienceId])
+  @@map("achievement")
+}
+
+/// A shipped or in-flight piece of work. `status` holds a ProjectStatus value.
+model Project {
+  id            String   @id
+  profileId     String   @map("profile_id")
+  name          String
+  slug          String
+  description   String?
+  url           String?
+  repositoryUrl String?  @map("repository_url")
+  status        String
+  stack         String[]
+  sortOrder     Int      @map("sort_order")
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@unique([profileId, slug])
+  @@index([profileId])
+  @@map("project")
+}
+
+/// One row, id `resume`. Holds the checksum of the résumé content last
+/// applied, so an unchanged restart reconciles nothing.
+model SeedState {
+  id        String   @id
+  checksum  String
+  appliedAt DateTime @updatedAt @map("applied_at") @db.Timestamptz(3)
+
+  @@map("seed_state")
+}

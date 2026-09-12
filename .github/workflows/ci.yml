@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        # 5435 to match config/config.example.yaml, which avoids colliding with
+        # a Postgres already running on a developer box
+        ports: ['5435:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 12
+    steps:
+    - uses: actions/checkout@v7
+
+    - uses: actions/setup-node@v7
+      with:
+        node-version: 22.15.0
+        cache: yarn
+
+    - run: yarn install --frozen-lockfile
+
+    - run: yarn prisma:generate
+
+    - run: yarn lint:ci
+
+    # ts-jest runs with isolatedModules, so `yarn test` never type-checks
+    # test/. This step is the only thing that does.
+    - run: yarn typecheck
+
+    - run: yarn test:l10n
+
+    - run: yarn build
+
+    - run: yarn test
+
+    # --env=local reads the committed config/*.example.yaml pair directly
+    - run: node scripts/build-config.mjs --env=local --out=config.json
+
+    - name: Apply migrations
+      run: yarn migrate:deploy
+
+    - run: yarn test:e2e
+      env:
+        NODE_ENV: test
+        CONFIG_JSON_PATH: config.json
+
+    # Booting the app in the e2e step regenerates the SDL. If it differs from
+    # what is committed, the schema changed without the change being reviewed.
+    - name: Check the committed GraphQL schema is current
+      run: git diff --exit-code src/schema.gql
