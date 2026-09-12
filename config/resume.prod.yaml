@@ -26,9 +26,6 @@ ResumeConfig:
     - kind: GITHUB
       label: GitHub
       url: https://github.com/OneZee23
-    - kind: LINKEDIN
-      label: LinkedIn
-      url: https://www.linkedin.com/in/nikita-shevelev-onezee
     - kind: BLOG
       label: Habr
       url: https://habr.com/ru/users/OneZee

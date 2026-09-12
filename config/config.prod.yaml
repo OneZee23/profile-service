@@ -1,5 +1,5 @@
 # username, database and password must match POSTGRES_USER, POSTGRES_DB and
-# POSTGRES_PASSWORD in /home/onezee/profile-service/.env — nothing syncs the two.
+# POSTGRES_PASSWORD in the .env on the server — nothing syncs the two.
 # password comes from CONFIG_SECRETS_JSON; without it the app fails validation.
 DatabaseConfig:
   host: postgres
